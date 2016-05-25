@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.v2.Web", "Phonebo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.V2.Data", "Phonebook.V2.Data\Phonebook.V2.Data.csproj", "{AA111633-FC15-449E-8F64-E67602C88BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.V2.Repositories", "ConsoleApplication1\Phonebook.V2.Repositories.csproj", "{AD3009C5-8318-47E9-A559-2441D2826EAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.v2.DataAccess", "Phonebook.v2.DataAccess\Phonebook.v2.DataAccess.csproj", "{5488BCAB-6619-4E19-B654-353A0909EFBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{AA111633-FC15-449E-8F64-E67602C88BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA111633-FC15-449E-8F64-E67602C88BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA111633-FC15-449E-8F64-E67602C88BD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD3009C5-8318-47E9-A559-2441D2826EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD3009C5-8318-47E9-A559-2441D2826EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD3009C5-8318-47E9-A559-2441D2826EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD3009C5-8318-47E9-A559-2441D2826EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5488BCAB-6619-4E19-B654-353A0909EFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5488BCAB-6619-4E19-B654-353A0909EFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5488BCAB-6619-4E19-B654-353A0909EFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5488BCAB-6619-4E19-B654-353A0909EFBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
