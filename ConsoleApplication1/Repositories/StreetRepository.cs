@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public class StreetRepository:GenericRepository
+    public class StreetRepository:GenericRepository<Street>
     {
     }
 }

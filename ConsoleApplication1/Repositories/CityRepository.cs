@@ -1,4 +1,5 @@
 ﻿using Phonebook.V2.Data;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-   public class CityRepository : GenericRepository
+   public class CityRepository : GenericRepository<City>
     {
     }
 }

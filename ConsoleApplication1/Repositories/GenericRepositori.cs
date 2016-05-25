@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Phonebook.V2.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,34 +9,37 @@ namespace Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+
+
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            T entity = PhonebookContext.T.Find(ID);
+            PhonebookContext.T.Remove(entity);
         }
 
         public IEnumerable<T> Get()
         {
-            throw new NotImplementedException();
+            return PhonebookContext.T.ToList();
         }
 
         public T GetByID(int ID)
         {
-            throw new NotImplementedException();
+            return PhonebookContext.T.Find(ID);
         }
 
         public void Insert(T entity)
         {
-            throw new NotImplementedException();
+            PhonebookContext.T.Add(entity);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            PhonebookContext.SaveChanges();
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            PhonebookContext.Entry(entity).State = EntityState.Modified;
         }
     }
 }

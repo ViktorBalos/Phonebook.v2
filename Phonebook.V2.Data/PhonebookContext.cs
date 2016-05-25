@@ -7,8 +7,7 @@ namespace Phonebook.V2.Data
 
     public partial class PhonebookContext : DbContext, IPhonebookContext
     {
-        public PhonebookContext()
-            : base("name=PhonebookContext")
+        public PhonebookContext() : base("name=PhonebookContext")
         {
         }
 
