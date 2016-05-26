@@ -1,5 +1,6 @@
 namespace Phonebook.V2.Data
 {
+    using System;
     using System.Data.Entity;
 
     public partial class PhonebookContext : DbContext, IPhonebookContext
@@ -12,6 +13,8 @@ namespace Phonebook.V2.Data
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Street> Streets { get; set; }
+
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

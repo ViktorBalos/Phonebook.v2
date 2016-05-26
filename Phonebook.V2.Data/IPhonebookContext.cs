@@ -8,5 +8,7 @@ namespace Phonebook.V2.Data
         DbSet<T> Set<T>() where T: class;
         int SaveChanges();
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
+        void Dispose();
+        
     }
 }
