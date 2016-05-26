@@ -54,8 +54,6 @@
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Country.cs" />
-    <Compile Include="IPhonebookContext.cs" />
-    <Compile Include="PhonebookContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Street.cs" />
   </ItemGroup>

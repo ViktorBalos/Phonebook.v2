@@ -8,41 +8,24 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
     public class UnitOfWork : IDisposable
     {
         private IPhonebookContext _context = null;        
-        private GenericRepository<City> _CityRepository;
-        private GenericRepository<Country> _CountryRepository;
-        private GenericRepository<Street> _StreetRepository;
-        private GenericRepository<Contact> _ContactRepository;
+        private CityRepository _cityRepository;
+        private GenericRepository<Country> _countryRepository;
+        private GenericRepository<Street> _streetRepository;
+        private GenericRepository<Contact> _contactRepository;
 
-        //public GenericRepository(IPhonebookContext context)
-        //{
-        //    _context = context;
-        //    _dbGet = _context.Get<T>();
-        //}
-
-
-        public GenericRepository<City> CityRepository
-        {
-            get
-            {
-
-                if (this.CityRepository == null)
-                {
-                    this._CityRepository = new GenericRepository<City>(_context);
-                }
-                return CityRepository;
-            }
-        }
+        
+        public CityRepository CityRepository => _cityRepository ?? (_cityRepository = new CityRepository(_context));
 
         public GenericRepository<Country> CountryRepository
         {
             get
             {
 
-                if (this.CountryRepository == null)
+                if (this._countryRepository == null)
                 {
-                    this._CountryRepository = new GenericRepository<Country>(_context);
+                    this._countryRepository = new GenericRepository<Country>(_context);
                 }
-                return CountryRepository;
+                return _countryRepository;
             }
         }
 
@@ -51,11 +34,11 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
             get
             {
 
-                if (this.StreetRepository == null)
+                if (this._streetRepository == null)
                 {
-                    this._StreetRepository = new GenericRepository<Street>(_context);
+                    this._streetRepository = new GenericRepository<Street>(_context);
                 }
-                return StreetRepository;
+                return _streetRepository;
             }
         }
 
@@ -66,9 +49,9 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
 
                 if (this.ContactRepository == null)
                 {
-                    this._ContactRepository = new GenericRepository<Contact>(_context);
+                    this._contactRepository = new GenericRepository<Contact>(_context);
                 }
-                return ContactRepository;
+                return _contactRepository;
             }
         }
 
