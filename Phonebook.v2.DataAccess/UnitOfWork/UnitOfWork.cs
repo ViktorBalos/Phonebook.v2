@@ -5,12 +5,13 @@ using System.Data.Entity;
 
 namespace Phonebook.v2.DataAccess.UnitOfWork
 {
-    public class UnitOfWork<T> where T:class, IDisposable
+    public class UnitOfWork : IDisposable
     {
         private IPhonebookContext _context = null;        
-        private GenericRepository<T> CityRepository;
-        private GenericRepository<T> CountryRepository;
-        private GenericRepository<T> StreetRepository;
+        private GenericRepository<City> _CityRepository;
+        private GenericRepository<Country> _CountryRepository;
+        private GenericRepository<Street> _StreetRepository;
+        private GenericRepository<Contact> _ContactRepository;
 
         //public GenericRepository(IPhonebookContext context)
         //{
@@ -19,43 +20,61 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
         //}
 
 
-        public GenericRepository<T> _CityRepository
+        public GenericRepository<City> CityRepository
         {
             get
             {
 
                 if (this.CityRepository == null)
                 {
-                    this.CityRepository = new GenericRepository<T>(_context);
+                    this._CityRepository = new GenericRepository<City>(_context);
                 }
                 return CityRepository;
             }
         }
 
-        public GenericRepository<T> _CountryRepository
+        public GenericRepository<Country> CountryRepository
         {
             get
             {
 
                 if (this.CountryRepository == null)
                 {
-                    this.CountryRepository = new GenericRepository<T>(_context);
+                    this._CountryRepository = new GenericRepository<Country>(_context);
                 }
                 return CountryRepository;
             }
         }
 
-        public GenericRepository<T> _StreetRepository
+        public GenericRepository<Street> StreetRepository
         {
             get
             {
 
                 if (this.StreetRepository == null)
                 {
-                    this.StreetRepository = new GenericRepository<T>(_context);
+                    this._StreetRepository = new GenericRepository<Street>(_context);
                 }
                 return StreetRepository;
             }
+        }
+
+        public GenericRepository<Contact> ContactRepository
+        {
+            get
+            {
+
+                if (this.ContactRepository == null)
+                {
+                    this._ContactRepository = new GenericRepository<Contact>(_context);
+                }
+                return ContactRepository;
+            }
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
 
         private bool disposed = false;
