@@ -13,6 +13,10 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
         private GenericRepository<Street> _streetRepository;
         private GenericRepository<Contact> _contactRepository;
 
+        public UnitOfWork(IPhonebookContext context)
+        {
+            _context = context;
+        }
         
         public CityRepository CityRepository => _cityRepository ?? (_cityRepository = new CityRepository(_context));
 
