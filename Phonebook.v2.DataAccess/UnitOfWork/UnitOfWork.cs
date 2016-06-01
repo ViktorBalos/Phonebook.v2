@@ -9,9 +9,9 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
     {
         private IPhonebookContext _context = null;        
         private CityRepository _cityRepository;
-        private GenericRepository<Country> _countryRepository;
-        private GenericRepository<Street> _streetRepository;
-        private GenericRepository<Contact> _contactRepository;
+        private CountryRepository _countryRepository;
+        private StreetRepository _streetRepository;
+        private ContactRepository _contactRepository;
 
         public UnitOfWork(IPhonebookContext context)
         {
@@ -20,40 +20,40 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
         
         public CityRepository CityRepository => _cityRepository ?? (_cityRepository = new CityRepository(_context));
 
-        public GenericRepository<Country> CountryRepository
+        public CountryRepository CountryRepository
         {
             get
             {
 
                 if (this._countryRepository == null)
                 {
-                    this._countryRepository = new GenericRepository<Country>(_context);
+                    this._countryRepository = new CountryRepository(_context);
                 }
                 return _countryRepository;
             }
         }
 
-        public GenericRepository<Street> StreetRepository
+        public StreetRepository StreetRepository
         {
             get
             {
 
                 if (this._streetRepository == null)
                 {
-                    this._streetRepository = new GenericRepository<Street>(_context);
+                    this._streetRepository = new StreetRepository(_context);
                 }
                 return _streetRepository;
             }
         }
 
-        public GenericRepository<Contact> ContactRepository
+        public ContactRepository ContactRepository
         {
             get
             {
 
                 if (this.ContactRepository == null)
                 {
-                    this._contactRepository = new GenericRepository<Contact>(_context);
+                    this._contactRepository = new ContactRepository(_context);
                 }
                 return _contactRepository;
             }
