@@ -19,23 +19,23 @@ namespace Repositories
 
         public List<City> GetCityByCountry(int id)
         {
-            var mozdaovako = (
-            from grad in PhonebookContext
-            from drzava in PhonebookContext
-            where City.CountryID == Country.ID )
-            .ToList();
-            return mozdaovako;
+            var result = (from cities in _context.Cities //koristimo instaciranmi objekat klase PhonebookContex, ta klasa nije staticka!!!!!!!!!!!!!!!!!!!!!!!
+                             from countries in _context.Countries
+                             where cities.CountryID == countries.ID && countries.ID == id
+                             select cities).ToList();
+
+            return result;
 
         }
 
-        public List<City> GetCityByCountry(string name)
+        public List<City> GetCityByCountry(string name)//uslov spoja nisi imao
         {
             var mozdaovako = (
-                from grad in DbSet < City >
-                from drzava in DbSet < Country >
-                where Country.CountryName == name
-                select City.CityName)
-                .ToList();
+                from grad in _context.Cities //ni DbSet nije staticka klasa
+                from drzava in _context.Countries
+                where drzava.ID == grad.CountryID && drzava.CountryName == name
+                select grad).ToList();
+
             return mozdaovako;
 
         }

@@ -9,8 +9,8 @@ namespace Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private IPhonebookContext _context = null;
-        private DbSet<T> _dbSet = null;
+        protected IPhonebookContext _context = null;
+        protected DbSet<T> _dbSet = null;
 
         public GenericRepository(IPhonebookContext context)
         {
