@@ -38,6 +38,10 @@ CREATE TABLE[dbo].[Contact](
 [HouseNumber] nvarchar (20) NOT NULL,
 [PhoneNumber] nvarchar (20) NOT NULL,
 [Email] nvarchar (50),
+[CreatedOn] datetime,
+[CreatedBy] nvarchar(25),
+[UpdatedOn] datetime,
+[UpdateBy] nvarchar(25),
 CONSTRAINT [Contact_pk] PRIMARY KEY ([ID]),
 CONSTRAINT [Contact_fk] FOREIGN KEY ([StreetID]) REFERENCES Street(ID)
 )
