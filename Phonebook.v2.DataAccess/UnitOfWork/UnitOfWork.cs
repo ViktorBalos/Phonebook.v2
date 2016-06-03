@@ -51,7 +51,7 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
             get
             {
 
-                if (this.ContactRepository == null)
+                if (this._contactRepository == null)
                 {
                     this._contactRepository = new ContactRepository(_context);
                 }
