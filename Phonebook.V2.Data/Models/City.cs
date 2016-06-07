@@ -15,7 +15,7 @@ namespace Phonebook.V2.Data
             Streets = new HashSet<Street>();
         }
         [Key]
-        public int CityID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [StringLength(50)]

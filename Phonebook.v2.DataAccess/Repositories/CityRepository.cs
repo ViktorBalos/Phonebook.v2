@@ -1,11 +1,6 @@
 ﻿using Phonebook.V2.Data;
-using Repositories;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Repositories
@@ -30,13 +25,13 @@ namespace Repositories
 
         public List<City> GetCityByCountry(string name)//uslov spoja nisi imao
         {
-            var mozdaovako = (
+            var result = (
                 from grad in _context.Cities //ni DbSet nije staticka klasa
                 from drzava in _context.Countries
                 where drzava.ID == grad.CountryID && drzava.CountryName == name
                 select grad).ToList();
 
-            return mozdaovako;
+            return result;
 
         }
     }
