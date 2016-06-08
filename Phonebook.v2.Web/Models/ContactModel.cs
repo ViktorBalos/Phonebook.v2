@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
 namespace Phonebook.v2.Web.Models
 {
@@ -10,7 +7,8 @@ namespace Phonebook.v2.Web.Models
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string HouseNumber { get; set; }
+
+        [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 

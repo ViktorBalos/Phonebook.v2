@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Phonebook.v2.DataAccess.UnitOfWork;
+using Phonebook.V2.DataAccess;
 
 namespace Phonebook.v2.UnitTests.Repositories
 {

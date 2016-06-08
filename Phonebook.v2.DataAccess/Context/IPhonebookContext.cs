@@ -1,7 +1,8 @@
-﻿using System.Data.Entity;
+﻿using Phonebook.V2.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace Phonebook.V2.Data
+namespace Phonebook.V2.DataAccess
 {
     public interface IPhonebookContext
     {

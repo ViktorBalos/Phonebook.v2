@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -267,6 +268,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Contact\Contacts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,6 +285,10 @@
     <ProjectReference Include="..\Phonebook.v2.DataAccess\Phonebook.v2.DataAccess.csproj">
       <Project>{5488bcab-6619-4e19-b654-353a0909efbb}</Project>
       <Name>Phonebook.v2.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phonebook.V2.Data\Phonebook.V2.Data.csproj">
+      <Project>{aa111633-fc15-449e-8f64-e67602c88bd0}</Project>
+      <Name>Phonebook.V2.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

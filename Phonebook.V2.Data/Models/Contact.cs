@@ -31,12 +31,12 @@ namespace Phonebook.V2.Data
         [StringLength(20)]
         public string PhoneNumber { get; set; }
 
-        public DateTime CreatedOn { get; set; }        
+        public DateTime? CreatedOn { get; set; }       
 
         [StringLength(25)]
         public string CreatedBy { get; set; }
 
-        public DateTime UpdatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; } 
 
         [StringLength(25)]
         public string UpdateBy { get; set; }

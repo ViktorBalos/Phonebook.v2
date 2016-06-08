@@ -1,5 +1,6 @@
-namespace Phonebook.V2.Data
+namespace Phonebook.V2.DataAccess
 {
+    using Data;
     using System;
     using System.Data.Entity;
 
