@@ -6,12 +6,16 @@ using System.Web.Mvc;
 using Phonebook.V2.DataAccess;
 using Phonebook.v2.DataAccess.UnitOfWork;
 using Phonebook.v2.Web.Models;
+using System.Net;
+using Phonebook.V2.Data;
 
 namespace Phonebook.v2.Web.Controllers
 {
     public class ContactController : Controller
     {
         private UnitOfWork _uow = new UnitOfWork(new PhonebookContext());
+        private PhonebookContext db = new PhonebookContext();
+        
 
         // GET: Contact
         [HttpGet]
@@ -35,5 +39,35 @@ namespace Phonebook.v2.Web.Controllers
                         
             return View(model);
         }
+
+        public ActionResult Delete(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Contact contact = db.Contacts.Find(ID);
+            if (contact == null)
+            {
+                return HttpNotFound();
+            }
+            return View(contact);
+        }
+
+        // POST: Albums/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Contact contact = db.Contacts.Find(id);
+            db.Contacts.Remove(contact);
+            db.SaveChanges();
+            return RedirectToAction("Contacts");
+        }
+
+
+
+
+
     }
 }
