@@ -23,7 +23,7 @@ namespace Phonebook.V2.Data
         public int StreetID { get; set; }
 
         [StringLength(10)]
-        public string StreetNumber { get; set; }
+        public string HouseNumber { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
