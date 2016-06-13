@@ -65,6 +65,19 @@ namespace Phonebook.v2.Web.Controllers
             return RedirectToAction("Contacts");
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Contact contacts = db.Contacts.Find(id);
+            if (contacts == null)
+            {
+                return HttpNotFound();
+            }
+            return View(contacts);
+        }
 
 
 
