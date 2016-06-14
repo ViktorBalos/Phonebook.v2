@@ -13,30 +13,31 @@ namespace Phonebook.v2.Web.Controllers
 {
     public class ContactController : Controller
     {
-        private UnitOfWork _uow = new UnitOfWork(new PhonebookContext());
-        private PhonebookContext db = new PhonebookContext();
-        
+        //private static PhonebookContext _db = new PhonebookContext();
+        private UnitOfWork _uow;
 
         // GET: Contact
         [HttpGet]
         public ActionResult Contacts()
         {
-            var data = _uow.ContactRepository.Get(null, null, null);
             List<ContactModel> model = new List<ContactModel>();
-
-            foreach (var item in data)
+            using (_uow = new UnitOfWork(new PhonebookContext()))
             {
-                ContactModel contact = new ContactModel()
+                var data = _uow.ContactRepository.Get(null, null, null);
+
+                foreach (var item in data)
                 {
-                    ID = item.ID,
-                    FirstName = item.FirstName,
-                    LastName = item.LastName,
-                    Email = item.Email,
-                    PhoneNumber = item.PhoneNumber
-                };
-                model.Add(contact);
-            }        
-                        
+                    ContactModel contact = new ContactModel()
+                    {
+                        ID = item.ID,
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        Email = item.Email,
+                        PhoneNumber = item.PhoneNumber
+                    };
+                    model.Add(contact);
+                }
+            }          
             return View(model);
         }
 
@@ -46,32 +47,41 @@ namespace Phonebook.v2.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(ID);
-            if (contact == null)
+            Contact contactToDelete = new Contact();
+            using (_uow = new UnitOfWork(new PhonebookContext())) 
+            {
+                contactToDelete = _uow.ContactRepository.GetByID((int)ID);
+            }
+            
+            if (contactToDelete == null)
             {
                 return HttpNotFound();
             }
-            return View(contact);
+            return View(contactToDelete);
         }
 
         // POST: Albums/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName(nameof(Delete))]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Contact contact = db.Contacts.Find(id);
-            db.Contacts.Remove(contact);
-            db.SaveChanges();
-            return RedirectToAction("Contacts");
+            using (_uow = new UnitOfWork(new PhonebookContext()))
+            {
+                var contact = _uow.ContactRepository.GetByID(id);
+                _uow.ContactRepository.Delete(contact);
+                _uow.ContactRepository.Save();
+            }
+            return RedirectToAction(nameof(Contacts));
         }
 
         public ActionResult Details(int? id)
         {
+            PhonebookContext _db = new PhonebookContext();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contacts = db.Contacts.Find(id);
+            Contact contacts = _db.Contacts.Find(id);
             if (contacts == null)
             {
                 return HttpNotFound();
