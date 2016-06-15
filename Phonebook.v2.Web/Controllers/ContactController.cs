@@ -13,7 +13,7 @@ namespace Phonebook.v2.Web.Controllers
 {
     public class ContactController : Controller
     {
-        //private static PhonebookContext _db = new PhonebookContext();
+       
         private UnitOfWork _uow;
 
         // GET: Contact
@@ -74,19 +74,44 @@ namespace Phonebook.v2.Web.Controllers
             return RedirectToAction(nameof(Contacts));
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? ID)
         {
-            PhonebookContext _db = new PhonebookContext();
-            if (id == null)
+
+            if (ID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contacts = _db.Contacts.Find(id);
-            if (contacts == null)
+            DetailsModel detail = new DetailsModel();
+            Contact contact = new Contact();
+            using (_uow = new UnitOfWork(new PhonebookContext()))
+            {
+                contact = _uow.ContactRepository.GetByID((int)ID);
+                var street = _uow.StreetRepository.GetByID(contact.StreetID);
+                var city = _uow.CityRepository.GetByID(street.CityID);
+                var country = _uow.CountryRepository.GetByID(city.CountryID);
+
+                
+                detail.StreetName = street.StreetName;
+                detail.CityName = city.CityName;
+                detail.CountryName = country.CountryName;
+                detail.ID = contact.ID;
+                detail.FirstName = contact.FirstName;
+                detail.LastName = contact.LastName;
+                detail.PhoneNumber = contact.PhoneNumber;
+                detail.Email = contact.Email;
+                detail.HouseNumber = contact.HouseNumber;
+                detail.CreatedBy = contact.CreatedBy;
+                detail.CreatedOn = contact.CreatedOn;
+                detail.UpdateBy = contact.UpdateBy;
+                detail.UpdatedOn = contact.UpdatedOn;
+
+            }
+                        
+            if (detail== null)
             {
                 return HttpNotFound();
             }
-            return View(contacts);
+            return View(detail);
         }
 
 
