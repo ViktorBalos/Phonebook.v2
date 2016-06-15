@@ -82,10 +82,10 @@ namespace Phonebook.v2.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             DetailsModel detail = new DetailsModel();
-            Contact contact = new Contact();
+            
             using (_uow = new UnitOfWork(new PhonebookContext()))
             {
-                contact = _uow.ContactRepository.GetByID((int)ID);
+                var contact = _uow.ContactRepository.GetByID((int)ID);
                 var street = _uow.StreetRepository.GetByID(contact.StreetID);
                 var city = _uow.CityRepository.GetByID(street.CityID);
                 var country = _uow.CountryRepository.GetByID(city.CountryID);
@@ -100,7 +100,7 @@ namespace Phonebook.v2.Web.Controllers
                 detail.PhoneNumber = contact.PhoneNumber;
                 detail.Email = contact.Email;
                 detail.HouseNumber = contact.HouseNumber;
-                detail.CreatedBy = contact.CreatedBy;
+                detail.CreatedBy = (contact.CreatedBy == null) ? "-" : contact.CreatedBy;
                 detail.CreatedOn = contact.CreatedOn;
                 detail.UpdateBy = contact.UpdateBy;
                 detail.UpdatedOn = contact.UpdatedOn;
