@@ -105,6 +105,8 @@ namespace Phonebook.v2.Web.Controllers
         {
             DetailsModel detail = new DetailsModel();
 
+            
+
             detail.StreetName = street.StreetName;
             detail.CityName = city.CityName;
             detail.CountryName = country.CountryName;
@@ -114,10 +116,10 @@ namespace Phonebook.v2.Web.Controllers
             detail.PhoneNumber = contact.PhoneNumber;
             detail.Email = contact.Email;
             detail.HouseNumber = contact.HouseNumber;
-            detail.CreatedBy = contact.CreatedBy;
-            detail.CreatedOn = contact.CreatedOn;
-            detail.UpdateBy = contact.UpdateBy;
-            detail.UpdatedOn = contact.UpdatedOn;
+            detail.CreatedBy = (contact.CreatedBy == null) ? "-" : contact.CreatedBy;
+            detail.CreatedOn = ( contact.CreatedOn ==null) ? DateTime.Today :contact.CreatedOn; //nisam znao kako da resim ovo drugacije za ove datetime podatke
+            detail.UpdateBy = (contact.UpdateBy == null) ? "-" : contact.UpdateBy; 
+            detail.UpdatedOn = (contact.UpdatedOn == null) ? DateTime.Today : contact.UpdatedOn; //nisam znao kako da resim ovo drugacije za ove datetime podatke
 
             return detail;
         }
