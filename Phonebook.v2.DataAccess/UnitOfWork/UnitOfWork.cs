@@ -21,44 +21,11 @@ namespace Phonebook.v2.DataAccess.UnitOfWork
         
         public CityRepository CityRepository => _cityRepository ?? (_cityRepository = new CityRepository(_context));
 
-        public CountryRepository CountryRepository
-        {
-            get
-            {
+        public CountryRepository CountryRepository => _countryRepository ?? (_countryRepository = new CountryRepository(_context));
 
-                if (this._countryRepository == null)
-                {
-                    this._countryRepository = new CountryRepository(_context);
-                }
-                return _countryRepository;
-            }
-        }
+        public StreetRepository StreetRepository => _streetRepository ?? (_streetRepository = new StreetRepository(_context));
 
-        public StreetRepository StreetRepository
-        {
-            get
-            {
-
-                if (this._streetRepository == null)
-                {
-                    this._streetRepository = new StreetRepository(_context);
-                }
-                return _streetRepository;
-            }
-        }
-
-        public ContactRepository ContactRepository
-        {
-            get
-            {
-
-                if (this._contactRepository == null)
-                {
-                    this._contactRepository = new ContactRepository(_context);
-                }
-                return _contactRepository;
-            }
-        }
+        public ContactRepository ContactRepository => _contactRepository ?? (_contactRepository = new ContactRepository(_context));
 
         public void Save()
         {
