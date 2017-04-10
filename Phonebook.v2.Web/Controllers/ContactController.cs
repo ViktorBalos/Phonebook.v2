@@ -8,12 +8,13 @@ using Phonebook.v2.DataAccess.UnitOfWork;
 using Phonebook.v2.Web.Models;
 using System.Net;
 using Phonebook.V2.Data;
+using Learn.Phonebook.Web.Models.Data;
+using System.Threading.Tasks;
 
 namespace Phonebook.v2.Web.Controllers
 {
     public class ContactController : Controller
     {
-       
         private UnitOfWork _uow;
 
         // GET: Contact
@@ -124,7 +125,46 @@ namespace Phonebook.v2.Web.Controllers
             return detail;
         }
 
+        //Route("/Contact/Create")]
+        [HttpGet]
+        public ActionResult AddContact()
+        {
+            AddContactModel model = new AddContactModel();
+            return View(model);
+        }
 
+        //[Route("/Contact/Create")]
+        [HttpPost]
+        public async Task<ActionResult> AddContact(AddContactModel input)
+        {
+            if (!ModelState.IsValid)
+                return null;
+            Contact entity = new Contact()
+            {
+                FirstName = input.FirstName,
+                LastName = input.LastName,
+                CreatedBy = User.Identity.Name.ToString(),
+                CreatedOn = DateTime.Now,
+                Email = input.Email,
+                HouseNumber = input.HouseNumber,
+                PhoneNumber = input.PhoneNumber,
+                UpdateBy = User.Identity.Name.ToString(),
+                UpdatedOn = DateTime.Now,
+            };
+            using (_uow = new UnitOfWork(new PhonebookContext()))
+            {
+                var country = _uow.CountryRepository.Get(c => c.CountryName == input.CountryName).FirstOrDefault();
+                var city = _uow.CityRepository.Get(c => c.CountryID == country.ID && c.CityName == input.CityName).FirstOrDefault();
+                var street = _uow.StreetRepository.Get(s => s.CityID == city.ID && s.StreetName == input.StreetName).FirstOrDefault();
+
+                entity.StreetID = street.ID;
+                _uow.ContactRepository.Insert(entity);
+                _uow.Save();
+            }
+                
+
+            return RedirectToAction(nameof(Contacts));
+        }
 
     }
 }

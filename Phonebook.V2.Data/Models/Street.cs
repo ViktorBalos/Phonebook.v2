@@ -1,10 +1,8 @@
 namespace Phonebook.V2.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Street")]
     public partial class Street
